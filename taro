@@ -1,0 +1,55 @@
+CREATE TABLE `users` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `username` varchar(50) DEFAULT NULL,
+    `password` varchar(255) DEFAULT NULL,
+    `role` varchar(20) DEFAULT 'user',
+    `last_login` datetime DEFAULT NULL,
+    `banned_until` datetime DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 8 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+
+CREATE TABLE `kategori` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `nama_kategori` varchar(100) DEFAULT NULL,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 11 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+
+CREATE TABLE `berita` (
+    `id` int NOT NULL AUTO_INCREMENT,
+    `judul` varchar(200) DEFAULT NULL,
+    `isi` text,
+    `kategori_id` int DEFAULT NULL,
+    `tanggal` date DEFAULT NULL,
+    `gambar` varchar(225) DEFAULT NULL,
+    `created_at` timestamp NULL DEFAULT CURRENT_TIMESTAMP,
+    PRIMARY KEY (`id`)
+) ENGINE = InnoDB AUTO_INCREMENT = 27 DEFAULT CHARSET = utf8mb4 COLLATE = utf8mb4_0900_ai_ci
+
+INSERT INTO users VALUES ('1', 'admin', MD5('admin123'));
+
+ALTER TABLE users ADD role VARCHAR(20) DEFAULT 'user';
+
+UPDATE users SET role='admin' WHERE username='admin';
+
+SELECT * FROM users;
+
+UPDATE users SET role='admin' WHERE username='admin';
+
+ALTER TABLE users MODIFY password VARCHAR(255);
+
+UPDATE users 
+SET password='$2y$10$rDmQCQFFrvZUwGQt3VvR1.bYLxTaDjIHMQOALPOvpaWzUErx5RXSu' 
+WHERE username='admin';
+
+UPDATE users 
+SET password='$2y$10$Ix5TPROdziRB4G7bfuQD/eibCm4uUhSvfc097RJIN.3g8sk3rJc16'
+WHERE username='ntan';
+
+SELECT * FROM kategori;
+
+ALTER TABLE berita ADD created_at TIMESTAMP DEFAULT CURRENT_TIMESTAMP;
+
+ALTER TABLE users ADD last_login DATETIME;
+
+ALTER TABLE users 
+ADD banned_until DATETIME NULL;
