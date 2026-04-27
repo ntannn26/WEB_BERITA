@@ -17,7 +17,7 @@ if(mysqli_num_rows($cek) > 0){
     exit;
 }
 
-// 🔥 HASH PASSWORD (INI KUNCI UTAMA)
+//  HASH PASSWORD
 $password_hash = password_hash($password, PASSWORD_DEFAULT);
 
 // SIMPAN
